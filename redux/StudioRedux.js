@@ -67,7 +67,8 @@ const addNewBox = (boxes) => {
 
 const removeLastBox = (boxes) => {
   const mutableBoxes = Immutable.asMutable(boxes)
-  mutableBoxes.pop()
+  if (mutableBoxes.length > 1)
+    mutableBoxes.pop()
   return Immutable(mutableBoxes)
 }
 

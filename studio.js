@@ -25,7 +25,7 @@ class Studio extends React.Component {
       }, 1000);
     }
 
-  renderBox(box) {
+  renderBox(box, i) {
 
     const {x, y, z, width, height, depth, rotationX, rotationY, rotationZ} = box
 
@@ -35,6 +35,7 @@ class Studio extends React.Component {
         dimDepth={depth}
         dimHeight={height}
         wireframe={false}
+        key={i}
         style={{
           layoutOrigin: [0, 0],
           transform: [
@@ -83,7 +84,7 @@ class Studio extends React.Component {
 
         {
           boxes.map((box, i) => {
-            return this.renderBox(box)
+            return this.renderBox(box, i)
           })
         }
       </View>
@@ -91,7 +92,8 @@ class Studio extends React.Component {
   }
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+  return {
   boxes: state.studio.boxes,
   x: state.studio.boxes.slice(-1)[0].x,
   y: state.studio.boxes.slice(-1)[0].y,
@@ -102,7 +104,8 @@ const mapStateToProps = state => ({
   rotationX: state.studio.boxes.slice(-1)[0].rotationX,
   rotationY: state.studio.boxes.slice(-1)[0].rotationY,
   rotationZ: state.studio.boxes.slice(-1)[0].rotationZ
-})
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
