@@ -25,10 +25,33 @@ class Studio extends React.Component {
       }, 1000);
     }
 
+  renderBox(box) {
+
+    const {x, y, z, width, height, depth, rotationX, rotationY, rotationZ, addBox} = box
+
+    return (
+      <Box
+        dimWidth={width}
+        dimDepth={depth}
+        dimHeight={height}
+        wireframe={false}
+        style={{
+          layoutOrigin: [0, 0],
+          transform: [
+            {translate: [x, y, z]},
+            {rotateX : rotationX},
+            {rotateY : rotationY},
+            {rotateZ : rotationZ},
+          ]
+        }}
+      />
+    )
+  }
+
   render() {
     //console.log('props: ', this.props)
 
-    const {transformBox, x, y, z, width, height, depth, rotationX, rotationY, rotationZ, addBox} = this.props
+    const {boxes, transformBox, x, y, z, width, height, depth, rotationX, rotationY, rotationZ, addBox} = this.props
 
     return (
       <View>
@@ -57,27 +80,18 @@ class Studio extends React.Component {
              zMinusClicked={() => transformBox({rotationZ: rotationZ - 5})}>
         </RotationHud>
 
-        <Box
-          dimWidth={width}
-          dimDepth={depth}
-          dimHeight={height}
-          wireframe={false}
-          style={{
-            layoutOrigin: [0, 0],
-            transform: [
-              {translate: [x, y, z]},
-              {rotateX : rotationX},
-              {rotateY : rotationY},
-              {rotateZ : rotationZ},
-            ]
-          }}
-        />
+        {
+          boxes.map((box, i) => {
+            return this.renderBox(box)
+          })
+        }
       </View>
     );
   }
 };
 
 const mapStateToProps = state => ({
+  boxes: state.studio.boxes,
   x: state.studio.boxes.slice(-1)[0].x,
   y: state.studio.boxes.slice(-1)[0].y,
   z: state.studio.boxes.slice(-1)[0].z,

@@ -33,7 +33,7 @@ export default class Hud extends React.Component {
               textAlignVertical:'center',
               fontSize: 0.2,
               layoutOrigin: [0.5, 0.5],
-              transform: [{translate: [1, 1.5, -3]}], }}>
+              transform: [{translate: [1, 0.2, -3]}], }}>
                 AddBox
             </Text>
           </VrButton>
