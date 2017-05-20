@@ -19,11 +19,26 @@ export default class Hud extends React.Component {
       zPlusClicked,
       zMinusClicked,
       addBox,
-      removeBox
+      removeBox,
+      exportFile
     } = this.props
 
     return (
       <View>
+      <VrButton
+        onClick={()=>exportFile()}>
+        <Text
+          style={{
+            backgroundColor:'green',
+            padding: 0.02,
+            textAlign:'center',
+            textAlignVertical:'center',
+            fontSize: 0.2,
+            layoutOrigin: [0.5, 0.5],
+            transform: [{translate: [1, 1, -3]}], }}>
+              Export
+          </Text>
+        </VrButton>
         <VrButton
           onClick={()=>addBox()}>
           <Text
