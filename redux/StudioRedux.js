@@ -55,15 +55,25 @@ export const addBox = (state) => {
   return state.update('boxes', addNewBox)
 }
 
+export const removeBox = (state) => {
+  return state.update('boxes', removeLastBox)
+}
+
 const addNewBox = (boxes) => {
   const mutableBoxes = Immutable.asMutable(boxes)
   mutableBoxes.push(defaultBox)
   return Immutable(mutableBoxes)
 }
 
+const removeLastBox = (boxes) => {
+  const mutableBoxes = Immutable.asMutable(boxes)
+  mutableBoxes.pop()
+  return Immutable(mutableBoxes)
+}
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.TRANSFORM_BOX]: transformCurrentBox,
   [Types.ADD_BOX]: addBox,
-  //[Types.REMOVE_CURRENT_BOX]: removeBox,
+  [Types.REMOVE_CURRENT_BOX]: removeBox,
 
 })

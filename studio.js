@@ -27,7 +27,7 @@ class Studio extends React.Component {
 
   renderBox(box) {
 
-    const {x, y, z, width, height, depth, rotationX, rotationY, rotationZ, addBox} = box
+    const {x, y, z, width, height, depth, rotationX, rotationY, rotationZ} = box
 
     return (
       <Box
@@ -51,7 +51,7 @@ class Studio extends React.Component {
   render() {
     //console.log('props: ', this.props)
 
-    const {boxes, transformBox, x, y, z, width, height, depth, rotationX, rotationY, rotationZ, addBox} = this.props
+    const {boxes, transformBox, x, y, z, width, height, depth, rotationX, rotationY, rotationZ, addBox, removeBox} = this.props
 
     return (
       <View>
@@ -61,7 +61,8 @@ class Studio extends React.Component {
              yMinusClicked={() => transformBox({y: y - 1})}
              zPlusClicked={() => transformBox({z: z + 1})}
              zMinusClicked={() => transformBox({z: z - 1})}
-             addBox={() => addBox()}>
+             addBox={() => addBox()}
+             removeBox={() => removeBox()}>
         </Hud>
 
         <DimensionHud widthPlusClicked={() => transformBox({width: width + 1})}
@@ -106,7 +107,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     transformBox: (attr) => dispatch(StudioActions.transformBox(attr)),
-    addBox: () => dispatch(StudioActions.addBox())
+    addBox: () => dispatch(StudioActions.addBox()),
+    removeBox: () => dispatch(StudioActions.removeCurrentBox())
   }
 }
 
