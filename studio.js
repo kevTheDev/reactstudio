@@ -26,9 +26,9 @@ class Studio extends React.Component {
     }
 
   render() {
-    console.log('props: ', this.props)
+    //console.log('props: ', this.props)
 
-    const {transformBox, x, y, z, width, height, depth, rotationX, rotationY, rotationZ} = this.props
+    const {transformBox, x, y, z, width, height, depth, rotationX, rotationY, rotationZ, addBox} = this.props
 
     return (
       <View>
@@ -37,7 +37,8 @@ class Studio extends React.Component {
              yPlusClicked={() => transformBox({y: y + 1})}
              yMinusClicked={() => transformBox({y: y - 1})}
              zPlusClicked={() => transformBox({z: z + 1})}
-             zMinusClicked={() => transformBox({z: z - 1})}>
+             zMinusClicked={() => transformBox({z: z - 1})}
+             addBox={() => addBox()}>
         </Hud>
 
         <DimensionHud widthPlusClicked={() => transformBox({width: width + 1})}
@@ -90,7 +91,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    transformBox: (attr) => dispatch(StudioActions.transformBox(attr))
+    transformBox: (attr) => dispatch(StudioActions.transformBox(attr)),
+    addBox: () => dispatch(StudioActions.addBox())
   }
 }
 

@@ -17,11 +17,26 @@ export default class Hud extends React.Component {
       yPlusClicked,
       yMinusClicked,
       zPlusClicked,
-      zMinusClicked
+      zMinusClicked,
+      addBox
     } = this.props
 
     return (
       <View>
+        <VrButton
+          onClick={()=>addBox()}>
+          <Text
+            style={{
+              backgroundColor:'blue',
+              padding: 0.02,
+              textAlign:'center',
+              textAlignVertical:'center',
+              fontSize: 0.2,
+              layoutOrigin: [0.5, 0.5],
+              transform: [{translate: [1, 1.5, -3]}], }}>
+                AddBox
+            </Text>
+          </VrButton>
         <VrButton
           onClick={()=>xPlusClicked()}>
           <Text
